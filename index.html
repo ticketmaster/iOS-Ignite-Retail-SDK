@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticketmaster API Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #024DDF;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #0238b3;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .content-wrapper {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .title {
+            color: #024DDF;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: none;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .nav-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 16px rgba(2, 77, 223, 0.1);
+            border: 1px solid rgba(2, 77, 223, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #024DDF;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .nav-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 32px rgba(2, 77, 223, 0.2);
+            border-color: #024DDF;
+        }
+
+        .nav-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background: #024DDF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .nav-card:hover .nav-icon {
+            transform: scale(1.1);
+            box-shadow: 0 8px 24px rgba(2, 77, 223, 0.3);
+        }
+
+        .nav-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .footer {
+            background: #024DDF;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .nav-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .nav-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Ticketmaster</div>
+    </header>
+
+    <div class="main-container">
+        <div class="content-wrapper">
+            <h1 class="title">API Portal</h1>
+            <p class="subtitle">Access our powerful ticketing APIs and services</p>
+            
+            <div class="nav-grid">
+                <a href="https://docs.taptix.co.uk/ticketmasterdiscoveryapi/documentation/ticketmasterdiscoveryapi/" class="nav-card" target="_blank">
+                    <div class="nav-icon">🔍</div>
+                    <h3 class="nav-title">Discovery API</h3>
+                    <p class="nav-description">Explore events, venues, and attractions with our comprehensive discovery endpoints</p>
+                </a>
+                
+                <a href="https://docs.taptix.co.uk/ticketmasterprepurchase/documentation/ticketmasterprepurchase/" class="nav-card" target="_blank">
+                    <div class="nav-icon">📋</div>
+                    <h3 class="nav-title">Prepurchase</h3>
+                    <p class="nav-description">Access presale information, pricing, and availability before tickets go on sale</p>
+                </a>
+                
+                <a href="https://docs.taptix.co.uk/ticketmasterpurchase/documentation/ticketmasterpurchase/" class="nav-card" target="_blank">
+                    <div class="nav-icon">🎫</div>
+                    <h3 class="nav-title">Purchase</h3>
+                    <p class="nav-description">Complete ticket transactions with our secure purchase processing system</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Ticketmaster. All rights reserved. | Developer Portal</p>
+    </footer>
+
+    <script>
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.nav-card');
+            
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.style.animation = 'slideInUp 0.6s ease forwards';
+            });
+        });
+
+        // Add CSS animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
