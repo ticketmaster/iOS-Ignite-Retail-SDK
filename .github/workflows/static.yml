@@ -29,10 +29,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: macos-14
     steps:
-      - name: Checkout Repo B (this repo)
+      - name: Checkout this repo
         uses: actions/checkout@v4
 
-      - name: Checkout Repo A (private with PAT)
+      - name: Checkout Ignite Repo
         uses: actions/checkout@v4
         with:
           repository: ticketmaster/iOS-TicketmasterSDK
@@ -46,8 +46,8 @@ jobs:
             echo "Processing $name..."
             $(xcrun --find docc) process-archive \
               transform-for-static-hosting "$archive" \
-              --output-path "docs/$name" \
-              --hosting-base-path iOS-Ignite-Retail-SDK/docs/$name
+              --output-path "$name" \
+              --hosting-base-path iOS-Ignite-Retail-SDK/$name
           done
       - name: Setup Pages
         uses: actions/configure-pages@v5
